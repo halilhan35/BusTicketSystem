@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Koltuk Seçimi</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .seat-grid { display: grid; grid-template-columns: repeat(4, 60px); gap: 10px; justify-content: center; margin-top: 20px;}
+        .seat { padding: 10px; border: none; cursor: pointer; border-radius: 5px;}
+        .available { background: #28a745; color: white; }
+        .selected { background: #ffc107; color: black; }
+        .reserved { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>🪑 Koltuk Seçimi</h2>
+    <div class="seat-grid" id="seatGrid"></div>
+    <button style="margin-top:20px;">Onayla</button>
+</div>
+<script>
+    const grid = document.getElementById('seatGrid');
+    for (let i = 1; i <= 40; i++) {
+      const seat = document.createElement('button');
+      seat.innerText = i;
+      seat.className = 'seat available';
+      seat.onclick = () => {
+        if (seat.classList.contains('available')) {
+          seat.classList.remove('available');
+          seat.classList.add('selected');
+        } else {
+          seat.classList.remove('selected');
+          seat.classList.add('available');
+        }
+      };
+      grid.appendChild(seat);
+    }
+</script>
+</body>
+</html>
