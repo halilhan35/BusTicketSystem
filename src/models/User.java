@@ -10,6 +10,9 @@ public abstract class User implements ILoginable {
   this.username = username;
   this.password = password;
  }
+    public String getUsername() {
+        return username;
+    }
 
 
 }

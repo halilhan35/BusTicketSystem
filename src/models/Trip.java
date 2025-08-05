@@ -2,6 +2,7 @@ package models;
 
 import interfaces.IReservable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,20 +11,31 @@ public class Trip implements IReservable {
   private Vehicle vehicle;
   private Route route;
   private LocalDate date;
+  private LocalTime time;
   private double price;
   private boolean[] seatStatus; // true = reserved, false = available
   private ArrayList<Reservation> reservations = new ArrayList<>();
 
-  public Trip(String tripId, Vehicle vehicle, Route route, LocalDate date, double price) {
+  public Trip(String tripId, Vehicle vehicle, Route route, LocalDate date,LocalTime time, double price) {
     this.tripId = tripId;
     this.vehicle = vehicle;
     this.route = route;
     this.date = date;
+    this.time = time;
     this.price = price;
     this.seatStatus = new boolean[vehicle.getCapacity()];
 
     // Random olarak bazı koltukları doldur
     fillRandomSeats();
+  }
+
+  public LocalTime getTime() {
+    return time;
+  }
+
+  // Eğer time set edilebilir olacaksa:
+  public void setTime(LocalTime time) {
+    this.time = time;
   }
 
   private void fillRandomSeats() {

@@ -1,18 +1,37 @@
+package reservation;
+
 import models.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
-public class Main {
+public class Main extends Application {
+
+    public Main() {
+        // Constructor burada boş olmalı (gerekirse sadece değişken tanımla)
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        System.out.println("🚀 Rezervasyon Sistemi Başlatılıyor...");
+        NameGenerator.loadNames(); // GUI dışında iş mantığı burada olabilir.
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginScreen.fxml"));
+        Scene scene = new Scene(loader.load());
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Rezervasyon Sistemi");
+        primaryStage.show();
+    }
+
+
     public static void main(String[] args) {
 
-
-        System.out.println("Rezervasyon Sistemi Baslatılıyor...");
-
-        //isim listesini yükle
-        NameGenerator.loadNames();
-
+        launch(args);
         Admin admin = new Admin("admin", "1234");
         ArrayList<Company> companies = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
